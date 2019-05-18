@@ -2,3 +2,4 @@ django
 djangorestframework
 psutil
 django-model-utils
+requests

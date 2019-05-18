@@ -17,8 +17,14 @@ class Customer(models.Model):
     # tuple: (<value_to_store_in_db>, <humane_readable_to_be_displayed>)
     gender_choices = Choices((male, 'Male'), (female, 'Female')) # cleanier way
     name   = models.CharField(max_length=250)
+    dob    = models.DateField(null=True)
     address = models.CharField(max_length=250, blank=True, null=True)
     gender  = models.CharField(max_length=1, validators=[validate_gender],
                                choices=gender_choices)
     cell    = models.IntegerField(unique=True)
     email   = models.EmailField(max_length=250, default="", null=True)
+
+    def to_dict(self):
+        c = dict(self.__dict__)
+        del c['_state']
+        return c
