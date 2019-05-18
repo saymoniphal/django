@@ -8,8 +8,12 @@ import sales.models
 # Create your views here.
 class CustomerView(views.APIView):
 
-    def get(self, request, format=None):
+    def get(self, request, pk=None, format=None):
         # get customer
+        if pk:
+            rec = sales.models.Customer.objects.get(id=int(pk))
+            return views.Response(rec.to_dict())
+
         recs = sales.models.Customer.objects.all()
         #return views.Response(recs, status=HTTP_200_OK)
         return views.Response([rec.to_dict() for rec in recs])

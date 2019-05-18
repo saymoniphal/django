@@ -12,4 +12,7 @@ def test_customer():
     print(resp)
     print(requests.get('http://localhost:8000/customers').json())
 
+    # get customer with id=1
+    print(requests.get('http://localhost:8000/customers/1').json())
+
 test_customer()

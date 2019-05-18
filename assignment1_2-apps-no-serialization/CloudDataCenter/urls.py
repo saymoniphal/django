@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 import virtualmachine.views
 import sales.views
 
@@ -24,5 +24,6 @@ urlpatterns = [
     path('get_num_cpu/', virtualmachine.views.NumCPUView.as_view()),
     path('get_ram/', virtualmachine.views.RAMView.as_view()),
     path('get_hdd/', virtualmachine.views.HDDView.as_view()),
-    path('customers/', sales.views.CustomerView.as_view())
-]
+    path('customers/', sales.views.CustomerView.as_view()),
+    re_path('customers/(?P<pk>\d+)', sales.views.CustomerView.as_view())
+    ]
